@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import ShinyButton from "../components/ShinyButton";
 
+
 export default function AddSchool() {
   const [form, setForm] = useState({});
   const router = useRouter();
@@ -26,6 +27,7 @@ export default function AddSchool() {
     >
       {/* Top navigation buttons */}
       <div className="flex gap-4 mb-8">
+        
         <ShinyButton
           val="🏠 Go Home"
           onclick={() => router.push("/")}

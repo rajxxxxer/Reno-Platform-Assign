@@ -1,6 +1,6 @@
 
 import Link from "next/link";
-import ShinyButton from "./components/Shinybutton";
+import ShinyButton from "./components/ShinyButton";
 
 export default function Home() {
   return (

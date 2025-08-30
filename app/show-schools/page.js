@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import ShinyButton from "../components/Shinybutton";
+import ShinyButton from "../components/ShinyButton";
 
 export default function ShowSchools() {
   const [schools, setSchools] = useState([]);

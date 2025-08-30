@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import ShinyButton from "../components/Shinybutton.jsx";
+import ShinyButton from "../components/ShinyButton.jsx";
 
 
 

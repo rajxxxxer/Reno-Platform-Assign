@@ -1,6 +1,7 @@
 
 import Link from "next/link";
-import ShinyButton from "./components/ShinyButton";
+import ShinyButton from "./components/ShinyButton.jsx";
+
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
             className="cursor-pointer"
            
           >
+            
             <ShinyButton  cl="bg-gradient-to-r from-[#417DF6] to-[#8E37EB]" val={"➕ Create School"} />
           </Link>
           <Link

@@ -1,7 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import ShinyButton from "../components/ShinyButton.jsx";
+import Shinny from "../components/Shinny";
+
+
 
 
 
@@ -53,12 +55,12 @@ export default function ShowSchools() {
       {/* ✅ Top Buttons */}
       <div className="flex justify-center gap-4 py-8 flex-wrap">
         
-        <ShinyButton
+        <Shinny
           val="🏠 Go Home"
           onclick={() => router.push("/")}
           cl="bg-gradient-to-r from-[#34d399] to-[#059669] px-6"
         />
-        <ShinyButton
+        <Shinny
           val="➕ Create School"
           onclick={() => router.push("/add-school")}
           cl="bg-gradient-to-r from-[#417DF6] to-[#8E37EB] px-6"
@@ -103,7 +105,7 @@ export default function ShowSchools() {
 
               {/* ✅ Delete Button */}
               <div className="p-4 pt-0">
-                <ShinyButton
+                <Shinny
                   val="🗑️ Delete"
                   onclick={() => handleDelete(s.id)}
                   cl="bg-gradient-to-r from-red-500 to-red-700 w-full py-2 text-sm"

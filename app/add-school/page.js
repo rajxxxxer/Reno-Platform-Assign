@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import ShinyButton from "../components/ShinyButton.jsx";
+import Shinny from "../components/Shinny";
+
 
 
 
@@ -29,16 +30,17 @@ export default function AddSchool() {
       {/* Top navigation buttons */}
       <div className="flex gap-4 mb-8">
         
-        <ShinyButton
+        <Shinny
           val="🏠 Go Home"
           onclick={() => router.push("/")}
           cl="bg-gradient-to-r from-[#34d399] to-[#059669] px-5 text-sm md:text-base"
         />
-        <ShinyButton
+        <Shinny
           val="📚 View Schools"
           onclick={() => router.push("/show-schools")}
           cl="bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] px-5 text-sm md:text-base"
         />
+       
       </div>
 
       {/* Add School Form */}
@@ -81,7 +83,7 @@ export default function AddSchool() {
             </div>
           ))}
 
-          <ShinyButton
+          <Shinny
             type="submit"
             val="➕ Create School"
             cl="bg-gradient-to-r from-[#417DF6] to-[#8E37EB] w-full py-3 text-base md:text-lg"

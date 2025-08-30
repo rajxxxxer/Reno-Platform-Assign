@@ -1,6 +1,6 @@
 import React from "react";
 
-const ShinyButton = ({ val, onclick, cl }) => {
+const Shinny = ({ val, onclick, cl }) => {
   return (
     <>
       <style>{`
@@ -40,4 +40,4 @@ const ShinyButton = ({ val, onclick, cl }) => {
   );
 };
 
-export default ShinyButton;
+export default Shinny;

@@ -1,6 +1,8 @@
 
 import Link from "next/link";
-import ShinyButton from "./components/ShinyButton.jsx";
+import Shinny from "./components/Shinny";
+
+
 
 
 export default function Home() {
@@ -22,14 +24,14 @@ export default function Home() {
            
           >
             
-            <ShinyButton  cl="bg-gradient-to-r from-[#417DF6] to-[#8E37EB]" val={"➕ Create School"} />
+            <Shinny cl="bg-gradient-to-r from-[#417DF6] to-[#8E37EB]" val={"➕ Create School"} />
           </Link>
           <Link
 
             href="/show-schools"
             className="cursor-pointer"
           >
-           <ShinyButton val={"🏫 View Schools"} />
+           <Shinny val={"🏫 View Schools"} />
           </Link>
         </div>
       </section>

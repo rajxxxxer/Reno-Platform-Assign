@@ -24,7 +24,6 @@ export default function ShowSchools() {
     setLoading(false);
   };
 
-  // Delete handler
   const handleDelete = async (id) => {
     if (!confirm("Are you sure you want to delete this school?")) return;
 
@@ -40,7 +39,6 @@ export default function ShowSchools() {
       }
 
       alert("School deleted successfully!");
-      // Remove deleted school from state
       setSchools((prev) => prev.filter((school) => school.id !== id));
     } catch (error) {
       alert("Failed to delete school.");
@@ -49,9 +47,9 @@ export default function ShowSchools() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 px-4 sm:px-6 lg:px-8">
       {/* ✅ Top Buttons */}
-      <div className="flex justify-center gap-4 py-8">
+      <div className="flex justify-center gap-4 py-8 flex-wrap">
         <ShinyButton
           val="🏠 Go Home"
           onclick={() => router.push("/")}
@@ -65,13 +63,12 @@ export default function ShowSchools() {
       </div>
 
       {/* ✅ Heading */}
-      <h2 className="text-3xl md:text-4xl font-bold text-center text-slate-800">
+      <h2 className="text-3xl md:text-4xl font-bold text-center text-slate-800 mb-6">
         📚 All Schools
       </h2>
 
       {/* ✅ School Cards Grid */}
-      <div className="grid gap-8 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {/* ✅ Spinner while loading */}
+      <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {loading ? (
           <div className="col-span-full flex flex-col items-center text-gray-500">
             <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-2"></div>
@@ -85,7 +82,7 @@ export default function ShowSchools() {
           schools.map((s) => (
             <div
               key={s.id}
-              className="bg-white shadow-md rounded-2xl overflow-hidden border hover:shadow-xl transform hover:scale-[1.02] transition-all flex flex-col"
+              className="relative bg-white shadow-md rounded-2xl overflow-hidden border transition-transform transform hover:-translate-y-2 hover:scale-[1.03] hover:z-10 hover:shadow-xl duration-300 flex flex-col"
             >
               <img
                 src={s.image}
@@ -101,7 +98,7 @@ export default function ShowSchools() {
                 <p className="text-gray-800 text-sm">✉️ {s.email_id}</p>
               </div>
 
-              {/* Delete Button */}
+              {/* ✅ Delete Button */}
               <div className="p-4 pt-0">
                 <ShinyButton
                   val="🗑️ Delete"

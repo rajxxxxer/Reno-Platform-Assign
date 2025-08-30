@@ -14,16 +14,18 @@ export default function Home() {
           Easily create and manage schools in one place.
         </p>
 
-        <div className="flex gap-6 flex-col sm:flex-row">
+        <div className="flex gap-6 flex-col sm:flex-row cursor-pointer">
           <Link
             href="/add-school"
+            className="cursor-pointer"
            
           >
             <ShinyButton  cl="bg-gradient-to-r from-[#417DF6] to-[#8E37EB]" val={"➕ Create School"} />
           </Link>
           <Link
+
             href="/show-schools"
-           
+            className="cursor-pointer"
           >
            <ShinyButton val={"🏫 View Schools"} />
           </Link>

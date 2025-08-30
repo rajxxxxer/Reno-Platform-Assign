@@ -21,6 +21,7 @@ export default function AddSchool() {
       body: JSON.stringify(form),
     });
     alert("School added!");
+    setForm({});
   };
 
   return (
@@ -73,6 +74,7 @@ export default function AddSchool() {
                 {label}
               </label>
               <input
+               value={form[name] || ""}
                 type={type}
                 name={name}
                 onChange={handleChange}

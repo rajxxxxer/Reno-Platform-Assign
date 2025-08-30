@@ -1,7 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import ShinyButton from "../components/ShinyButton";
+import ShinyButton from "../components/Shinybutton";
+
+
 
 export default function ShowSchools() {
   const [schools, setSchools] = useState([]);
@@ -50,6 +52,7 @@ export default function ShowSchools() {
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 px-4 sm:px-6 lg:px-8">
       {/* ✅ Top Buttons */}
       <div className="flex justify-center gap-4 py-8 flex-wrap">
+        
         <ShinyButton
           val="🏠 Go Home"
           onclick={() => router.push("/")}

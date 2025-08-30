@@ -1,5 +1,6 @@
 
 import Link from "next/link";
+import ShinyButton from "./components/Shinybutton";
 
 export default function Home() {
   return (
@@ -16,15 +17,15 @@ export default function Home() {
         <div className="flex gap-6 flex-col sm:flex-row">
           <Link
             href="/add-school"
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition text-lg font-medium"
+           
           >
-            ➕ Create School
+            <ShinyButton  cl="bg-gradient-to-r from-[#417DF6] to-[#8E37EB]" val={"➕ Create School"} />
           </Link>
           <Link
             href="/show-schools"
-            className="px-6 py-3 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition text-lg font-medium"
+           
           >
-            📋 Show Schools
+           <ShinyButton val={"🏫 View Schools"} />
           </Link>
         </div>
       </section>

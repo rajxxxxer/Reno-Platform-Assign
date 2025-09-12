@@ -19,7 +19,7 @@ export default function Verify() {
 
     const data = await res.json();
     if (res.ok) {
-      router.push("/add-school");
+      router.push("/");
     } else {
       setMsg(data.error || "Invalid OTP");
     }

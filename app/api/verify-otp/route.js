@@ -1,39 +1,47 @@
-import redis from "@/lib/redis.js";
+// app/api/verify-otp/route.js
+import redis from "@/lib/redis";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import sql from "@/lib/db.js"; // your Neon/Postgres client
+import sql from "@/lib/db";
 
 export async function POST(req) {
   try {
     const { email, otp } = await req.json();
+
     if (!email || !otp) {
-      return new Response(JSON.stringify({ error: "Missing fields" }), { status: 400 });
+      return new Response(JSON.stringify({ error: "Missing email or OTP" }), {
+        status: 400,
+      });
     }
 
-    // Get OTP hash from Redis
+    // Get hashed OTP from Redis
     const hash = await redis.get(`otp:${email}`);
     if (!hash) {
-      return new Response(JSON.stringify({ error: "OTP expired or missing" }), { status: 400 });
+      return new Response(JSON.stringify({ error: "OTP expired or not found" }), {
+        status: 400,
+      });
     }
 
     // Compare OTP
-    const ok = await bcrypt.compare(String(otp), hash);
-    if (!ok) {
-      return new Response(JSON.stringify({ error: "Invalid OTP" }), { status: 401 });
+    const isValid = await bcrypt.compare(String(otp), hash);
+    if (!isValid) {
+      return new Response(JSON.stringify({ error: "Invalid OTP" }), {
+        status: 401,
+      });
     }
 
-    // OTP verified → delete key
+    // OTP is valid, delete from Redis
     await redis.del(`otp:${email}`);
 
-    // Ensure user exists in DB
-    const u = await sql`SELECT * FROM users WHERE email = ${email}`;
-    let user = u && u[0];
+    // Check if user exists, if not, create one
+    let user = (await sql`SELECT * FROM users WHERE email = ${email}`)[0];
+
     if (!user) {
-      const created = await sql`
+      const inserted = await sql`
         INSERT INTO users (email)
         VALUES (${email})
         RETURNING *`;
-      user = created[0];
+      user = inserted[0];
     }
 
     // Create JWT
@@ -43,8 +51,8 @@ export async function POST(req) {
       { expiresIn: "7d" }
     );
 
-    // Set JWT in HttpOnly cookie
-    const cookie = `token=${token}; Path=/; HttpOnly; Max-Age=${7*24*60*60}; SameSite=Lax`;
+    // Set HttpOnly cookie
+    const cookie = `token=${token}; Path=/; HttpOnly; Max-Age=${7 * 24 * 60 * 60}; SameSite=Lax`;
 
     return new Response(JSON.stringify({ ok: true }), {
       status: 200,
@@ -55,6 +63,10 @@ export async function POST(req) {
     });
 
   } catch (err) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500 });
+    console.error("OTP verification error:", err);
+    return new Response(
+      JSON.stringify({ error: "Internal server error" }),
+      { status: 500 }
+    );
   }
 }

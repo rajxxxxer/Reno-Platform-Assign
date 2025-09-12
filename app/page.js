@@ -9,8 +9,7 @@ export default function Home() {
   const [user, setUser] = useState(null);
 
   // Check login on mount
-  useEffect(() => {
-    async function fetchUser() {
+      async function fetchUser() {
       try {
         const res = await fetch("/api/me", { cache: "no-store" });
         if (!res.ok) {
@@ -23,6 +22,9 @@ export default function Home() {
         setUser(null);
       }
     }
+    
+  useEffect(() => {
+
 
     fetchUser();
   }, []);
@@ -46,12 +48,10 @@ export default function Home() {
             <span className="text-sm text-gray-700 whitespace-nowrap">
               👋 Hi, <span className="font-semibold">{user.email}</span>
             </span>
-            <button
-              onClick={handleLogout}
-              className="px-4 py-2 bg-red-600 text-white font-medium rounded-lg shadow hover:bg-red-700 transition"
-            >
-              Logout
-            </button>
+            <Shinny onclick={handleLogout}  cl="bg-gradient-to-r from-[#EF4444] to-[#B91C1C]"
+
+              val={" logout"} ></Shinny>
+        
           </>
         ) : (
           <button

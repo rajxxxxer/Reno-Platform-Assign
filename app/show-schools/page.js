@@ -4,10 +4,6 @@ import { useRouter } from "next/navigation";
 import Shinny from "../components/Shinny";
 import { UserContext } from "../Usercontext/UserContext";
 
-
-
-
-
 export default function ShowSchools() {
   const [schools, setSchools] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -61,7 +57,6 @@ export default function ShowSchools() {
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 px-4 sm:px-6 lg:px-8">
       {/* ✅ Top Buttons */}
       <div className="flex justify-center gap-4 py-8 flex-wrap">
-        
         <Shinny
           val="🏠 Go Home"
           onclick={() => router.push("/")}
@@ -96,6 +91,7 @@ export default function ShowSchools() {
               key={s.id}
               className="relative bg-white shadow-md rounded-2xl overflow-hidden border transition-transform transform hover:-translate-y-2 hover:scale-[1.03] hover:z-10 hover:shadow-xl duration-300 flex flex-col"
             >
+              {/* ✅ Image simple <img> */}
               <img
                 src={s.image}
                 alt={s.name}

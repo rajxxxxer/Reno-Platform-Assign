@@ -38,15 +38,16 @@ export default function Login() {
         <label className="block mb-2 text-gray-700 font-medium" htmlFor="email">
           Email Address
         </label>
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          type="email"
-          id="email"
-          required
-          className="w-full px-4 py-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-          placeholder="you@example.com"
-        />
+       <input
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  type="email"
+  id="email"
+  required
+  className="w-full px-4 py-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition text-gray-900 placeholder-gray-400"
+  placeholder="you@example.com"
+/>
+
 
         <div className="flex justify-center">
           <Shinny onclick={handleSend} val={"📩 Send OTP"} />

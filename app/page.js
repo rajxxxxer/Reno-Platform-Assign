@@ -2,38 +2,21 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Shinny from "./components/Shinny";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "./Usercontext/UserContext";
 
 export default function Home() {
   const router = useRouter();
-  const [user, setUser] = useState(null);
-
-  // Check login on mount
-      async function fetchUser() {
-      try {
-        const res = await fetch("/api/me", { cache: "no-store" });
-        if (!res.ok) {
-          throw new Error("User fetch failed");
-        }
-        const data = await res.json();
-        setUser(data.user);
-      } catch (err) {
-        console.error("Failed to fetch user:", err.message);
-        setUser(null);
-      }
-    }
-    
-  useEffect(() => {
-
-
+  const { user, setUser ,fetchUser} = useContext(UserContext);
+  useEffect(()=>{
     fetchUser();
-  }, []);
+  },[])
 
   const handleLogout = async () => {
     try {
       await fetch("/api/logout", { method: "POST" });
       setUser(null);
-      router.refresh(); // refresh to update UI
+      router.refresh(); // refsh ui
     } catch (err) {
       console.error("Logout failed:", err.message);
     }
@@ -41,7 +24,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-50 via-white to-blue-100 relative">
-      {/* Top-right Login/Logout button + Email */}
+     
       <div className="absolute top-4 right-6 flex flex-col sm:flex-row items-end sm:items-center gap-1 sm:gap-3 text-right max-w-xs sm:max-w-none">
         {user ? (
           <>
@@ -54,12 +37,11 @@ export default function Home() {
         
           </>
         ) : (
-          <button
-            onClick={() => router.push("/auth/login")}
-            className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg shadow hover:bg-blue-700 transition"
-          >
-            Login
-          </button>
+          <Shinny
+            onclick={() => router.push("/auth/login")}
+            cl="bg-gradient-to-r from-[#417DF6] to-[#8E37EB]"
+            val={"Login"}
+          />
         )}
       </div>
 
@@ -72,7 +54,7 @@ export default function Home() {
         </p>
 
         <div className="flex gap-6 flex-col sm:flex-row cursor-pointer">
-          <Link href="/add-school" className="cursor-pointer">
+          <Link href={user ? "/add-school" : "/auth/login"} className="cursor-pointer">
             <Shinny
               cl="bg-gradient-to-r from-[#417DF6] to-[#8E37EB]"
               val={"➕ Create School"}

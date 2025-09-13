@@ -3,7 +3,7 @@ import { getUserFromReq } from "@/lib/auth.js";
 
 export async function DELETE(req, context) {
   try {
-    // 🔒 Check authentication
+    // Authenticate user
     const user = getUserFromReq(req);
     if (!user) {
       return new Response(

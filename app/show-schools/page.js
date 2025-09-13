@@ -1,7 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Shinny from "../components/Shinny";
+import { UserContext } from "../Usercontext/UserContext";
 
 
 
@@ -11,6 +12,7 @@ export default function ShowSchools() {
   const [schools, setSchools] = useState([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     fetchSchools();
@@ -29,6 +31,11 @@ export default function ShowSchools() {
   };
 
   const handleDelete = async (id) => {
+    if (!user) {
+      alert("You must be logged in to delete a school.");
+      router.push("/auth/login");
+      return;
+    }
     if (!confirm("Are you sure you want to delete this school?")) return;
 
     try {
